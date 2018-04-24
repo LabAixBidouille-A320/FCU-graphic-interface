@@ -17,7 +17,7 @@ Dans le cadre du projet de refaire entièrement le protocole de transmission de 
 
 Nous allons nous servir des pins compatibles Arduino de la Nucleo 64 pour communiquer facilement avec le FCU. Voici un exemple de branchement : 
 
-Côté FCU : ![Branchement FCU](Branchement_FCU.png) et côté Arduino ![Brancheemnt Arduino](Branchement_Arduino.png)
+Côté FCU : ![Branchement FCU](Branchement_FCU.PNG) et côté Arduino ![Branchement Arduino](Branchement_Arduino.PNG)
 
 Si vous changez le numéro des pins coté Arduino, vous devrez également faire le changement dans le code associé.
 
