@@ -39,12 +39,12 @@ Si vous choisissez de la créer vous même, voici comment elle devra fonctionner
 	* Un autre paquet dont le premier octet vaut 1 et le dernier 254, signifie que les 4 octets du milieu représentent l'état de la partie centrale du FCU
 	* Enfin, le dernier paquet dont le premier octet vaut 2 et le dernier 253, signifie que les 4 octets du milieu représentent l'état de la partie droite du FCU
 	* Les 3 images suivantes détaillent les informations de chaque bit de chaque octet
-	* ![FCU gauche](FCU_gauche.PNG)
-	* ![FCU centre](FCU_centre.PNG)
-	* ![FCU droite](FCU_droite.PNG)
+	 ![FCU gauche](FCU_gauche.PNG)
+	 ![FCU centre](FCU_centre.PNG)
+	 ![FCU droite](FCU_droite.PNG)
 * Il vous faudra, le plus souvent possible (Par exemple à chaque fois que vous recevez une donnée), envoyer l'état de l'interface graphique pour changer l'état lumineux du FCU, et ce sous la forme de 15 octets.
 	* Les 3 premiers sont les valeurs qui représentent l'état des leds, selon la représentation suivante ( _Attention, la représentation est à l'envers du sens de lecture d'origine d'un octet_)
-	* ![FCU Leds](FCU_Leds.png)
+	 ![FCU Leds](FCU_Leds.png)
 	* Les 12 octets suivants représentes les 24 caractères à afficher en 7 segments sur le FCU, dans l'ordre de Gauche à Droite ( Gauche : 4, Centre: 3-3-5-5, Droite: 4). Chaque octet contient donc 2 caractère, chacun sous sa forme hexadécimale, dans l'ordre du poids fort au poids faible. Exemples :
 		* Si vous voulez envoyer sur l'afficheur de la partie gauche les informations "1234", les deux permiers octets de cette série de 12 devront valoir 0x12 et 0x34 (Vous pouvez envoyer leur valeur binaire ou décimale, ici B00010010, B00110100 et 18, 52).
 		* Si vous voulez afficher les caractères "FAb13" à gauche sur l'afficheur 7 segments de droite de la partie centre du FCU, il faudra que les octets 6 7 et 8 sur les 12 valent 0xFA, 0xB1, 0x3X (X = peu importe).
