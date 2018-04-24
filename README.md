@@ -39,9 +39,9 @@ Si vous choisissez de la créer vous même, voici comment elle devra fonctionner
 	* Un autre paquet dont le premier octet vaut 1 et le dernier 254, signifie que les 4 octets du milieu représentent l'état de la partie centrale du FCU
 	* Enfin, le dernier paquet dont le premier octet vaut 2 et le dernier 253, signifie que les 4 octets du milieu représentent l'état de la partie droite du FCU
 	* Les 3 images suivantes détaillent les informations de chaque bit de chaque octet
-	![FCU gauche](FCU_gauche.png)
-	![FCU centre](FCU_centre.png)
-	![FCU droite](FCU_droite.png)
+	* ![FCU gauche](FCU_gauche.png)
+	* ![FCU centre](FCU_centre.png)
+	* ![FCU droite](FCU_droite.png)
 * Il vous faudra, le plus souvent possible (Par exemple à chaque fois que vous recevez une donnée), envoyer l'état de l'interface graphique pour changer l'état lumineux du FCU, et ce sous la forme de 15 octets.
 	* Les 3 premiers sont les valeurs qui représentent l'état des leds, selon la représentation suivante ( _Attention, la représentation est à l'envers du sens de lecture d'origine d'un octet_)
 	* ![FCU Leds](FCU_Leds.png)
