@@ -26,7 +26,7 @@ Si vous changez le numéro des pins coté Arduino, vous devrez également faire 
 ### Coté FCU/Arduino
 
 Il faut télécharger au préalable des bibliothèques LedControl et MCP23S17.
-Le code à téléverser dans la carte est disponible également sur le repo à [cet endroit](???).
+Le code à téléverser dans la carte est disponible également sur le repo à [cet endroit](https://github.com/LabAixBidouille-A320/FCU-graphic-interface/blob/master/FCU-simulateur/FCU-simulateur.ino).
 
 ### Coté PC/Node.js
 
