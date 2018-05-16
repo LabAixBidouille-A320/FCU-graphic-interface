@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css" />
+    <title>Hello World!</title>
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+<!-- normal script imports etc  -->
+<script src="jquery/jquery-3.2.1.min.js"></script>    
+<script src="jquery/modernizr-3.5.0.min.js"></script> 
+<script src="refresh.js"></script>     
+<script src="serialport.js"></script>    
+
+<!-- Insert this line after script imports -->
+<script>if (window.module) module = window.module;</script>
+
+  </head>
+  <body>
+    <button onclick="location.reload();">Reload</button><br>
+    Numéro du port COM : <input id="COM" type="text" style="width: 25px"  >
+    <button onclick="serialPort($('#COM').val());">Lancer la simulation</button> 
+    <span id="ErreurPort"></span>
+    <p id="Connection">Non connecté</p>
+    <p id="Gauche"></p>
+    <p id="Centre"></p>
+    <p id="Droite"></p>
+    <div id="module" style="display:none ">
+      <p>Gauche : </p>
+      <div class="partie">
+        <div id="partie_gauche1" class="partie">
+          <input id="aff7segG" type="text" class="aff7seg4">
+          <p>Cran : <span id="switch1cranG" class="switchcran">?</span></p>
+          <p>Switch : <span id="switch1G" class="switch">?</span></p>
+          FD : <span id="FD-G" class="button">OFF</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          ILS : <span id="ILS-G" class="button">OFF</span><br>
+          Light : <input id="LED-FD-G" type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;
+          Light :<input id="LED-ILS-G" type="checkbox">
+        </div>
+        <div id="partie_gauche2" class="partie">
+          CSTR : <span id="CSTR-G" class="button">OFF</span>&nbsp;&nbsp;&nbsp;
+          WPT : <span id="WPT-G" class="button">OFF</span>&nbsp;&nbsp;&nbsp;
+          VOR.D : <span id="VORD-G" class="button">OFF</span>&nbsp;&nbsp;&nbsp;
+          NDB : <span id="NDB-G" class="button">OFF</span>&nbsp;&nbsp;&nbsp;
+          ARPT : <span id="ARPT-G" class="button">OFF</span><br>
+          Light : <input id="LED-CSTR-G" type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          Light :<input id="LED-WPT-G" type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          Light : <input id="LED-VORD-G" type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          Light :<input id="LED-NDB-G" type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          Light : <input id="LED-ARPT-G" type="checkbox">
+          <p>
+            <span id="switch2G" class="switch">?</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="switch3G" class="switch">?</span>
+          </p>
+          <p>
+            <span id="switch4G" class="switch">?</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="switch5G" class="switch">?</span>
+          </p>
+        </div>
+      </div>
+      <br><br><br><br><br><br><br><br><br><br>
+      <p><br>Centre : </p>
+      <div class="partie">
+        <div>
+          <input id="aff7segC1" type="text" class="aff7seg3">&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;<input id="aff7segC2" type="text" class="aff7seg3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="aff7segC3" type="text" class="aff7seg5">&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;<input id="aff7segC4" type="text" class="aff7seg5">
+        </div>
+        <br>
+        <div id="partie_centre1" class="partie">
+          <span id="switch1C" class="switch">?</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="switch2C" class="switch">?</span><br><br>
+          LOC : <span id="LOC-C" class="button">OFF</span><br>
+          Light : <input id="LED-LOC-C" type="checkbox">
+        </div>
+        <div id="partie_centre2" class="partie">
+          HDG TRK &nbsp;&nbsp; <span id="HDG-C" class="button">OFF</span> &nbsp;&nbsp; V/S FPA<br><br>
+          AP1 : <span id="AP1-C" class="button">OFF</span> &nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;AP2 : <span id="AP2-C" class="button">OFF</span> <br>
+          Light : <input id="LED-AP1-C" type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;Light : <input id="LED-AP2-C" type="checkbox"><br><br>
+          A/THR : <span id="ATHR-C" class="button">OFF</span> <br>
+          Light : <input id="LED-ATHR-C" type="checkbox">
+        </div>
+        <div id="partie_centre3" class="partie">
+          <span id="switch3cran" class="switchcran">?</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><span id="switch3C" class="switch">?</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="METRIC-ALT-C" class="button">OFF</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="switch4C" class="switch">?</span><br>METRIC<br> ALT<br>
+          EXPED : <span id="EXPED-C" class="button">OFF</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APPR : <span id="APPR-C" class="button">OFF</span><br>
+          Light : <input id="LED-EXPED-C" type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Light : <input id="LED-APPR-C" type="checkbox">
+        </div>
+      </div>
+      <br><br><br><br><br><br><br><br><br><br><br><br>
+      <p>Droite : </p>
+      <div class="partie">
+        <div id="partie_droite1" class="partie">
+          ARPT : <span id="ARPT-D" class="button">OFF</span>&nbsp;&nbsp;&nbsp;
+          NDB : <span id="NDB-D" class="button">OFF</span>&nbsp;&nbsp;&nbsp;
+          VOR.D : <span id="VORD-D" class="button">OFF</span>&nbsp;&nbsp;&nbsp;
+          WPT : <span id="WPT-D" class="button">OFF</span>&nbsp;&nbsp;&nbsp;
+          CSTR : <span id="CSTR-D" class="button">OFF</span><br>
+          Light : <input id="LED-ARPT-D" type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          Light :<input id="LED-NDB-D" type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          Light : <input id="LED-VORD-D" type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          Light :<input id="LED-WPT-D" type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          Light : <input id="LED-CSTR-D" type="checkbox">
+          <p>
+            <span id="switch3D" class="switch">?</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="switch2D" class="switch">?</span>
+          </p>
+          <p>
+            <span id="switch5D" class="switch">?</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="switch4D" class="switch">?</span>
+          </p>
+        </div>
+        <div id="partie_droite2" class="partie">
+          <input id="aff7segD" type="text" class="aff7seg4">
+          <p>Cran : <span id="switch1cranD" class="switchcran">?</span></p>
+          <p>Switch : <span id="switch1D" class="switch">?</span></p>
+          ILS : <span id="ILS-D" class="button">OFF</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          FD : <span id="FD-D" class="button">OFF</span>
+          <br>
+          Light : <input id="LED-ILS-D" type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;
+          Light :<input id="LED-FD-D" type="checkbox">
+        </div>
+        
+
+      </div>
+    </div>
+
+    
+    
+
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js');
+      
+    </script>
+  </body>
+</html>
