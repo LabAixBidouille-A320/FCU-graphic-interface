@@ -95,7 +95,7 @@ void establishContact(){
 }
 
 //Cette fonction est appelée à chaque fois que du contenu se trouve sur la lecture du port série
-//C'est donc là où vont se retrouver les données que l'interface graphique envoie  à la carte
+//C'est donc là où vont se retrouver les données que l'interface graphique envoie à la carte
 void serialEvent() {
   while (Serial.available()) {
     Serial.readBytesUntil(' ', inputByte, 15 );
@@ -214,7 +214,6 @@ void refreshGauche(){
   LedControl lcGauche = LedControl(11, 13, 4, 1);
   lcGauche.shutdown(0, false); // activation module Gauche (U9)
   lcGauche.setIntensity(0, bright); 
-  
 }
 
 void refreshCentre(){
