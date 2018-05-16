@@ -61,3 +61,4 @@ A partir d'ici, c'est très simple.
 Une fois l'environnement mis en place, il suffit d'allimenter le FCU et de brancher la carte Nucleo au PC. Une fois que le bon port COM est ouvert, si la synchronisation ne se fait pas, il faut redémarrer la carte avec le bouton noir situé au milieu de celle-ci. ( Si vous avez votre propre interface graphique et que le problème persiste, vérifiez que le mot "Contact" ne s'envoie pas en décalé, comme "ntactCo").
 
 Ensuite, si vous avez pris le programme disponible sur le repo, l'interface apparait avec les cases à cocher pour chaque LED à allumer sur le FCU, et des zones de texte à remplir pour les afficheurs 7 segments ( toujours uniquement des caractères de 0 à 9 et de A à F). En rouge se sont toutes les valeurs qui peuvent changer en faisant une action sur le FCU, principalement pousser tirer ou tourner un bouton.
+
