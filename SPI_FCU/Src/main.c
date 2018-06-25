@@ -86,7 +86,7 @@ static void MX_SPI3_Init(void);
 
 /* USER CODE BEGIN 0 */
 
-// Afficher sur le port série
+// Afficher sur le port sÃ©rie
 void Serial_Transmit_Str(char* str)
 {
 	HAL_UART_Transmit(&huart2, str, strlen(str), 1000);
@@ -102,7 +102,7 @@ void Serial_Transmit_I(int * i)
 	HAL_UART_Transmit(&huart2, i, 1, 1000);
 }
 
-// Recevoir une donnée du port série par interruption
+// Recevoir une donnÃ©e du port sÃ©rie par interruption
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	int i;
@@ -119,7 +119,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 	}
 }
 
-// Changer la polarité de l'horloge (Elle doit être à HIGH pour l'afficheur et à LOW pour les switchs)
+// Changer la polaritÃ© de l'horloge (Elle doit Ãªtre Ã  HIGH pour l'afficheur et Ã  LOW pour les switchs)
 int setClockPolarity(int cpol)
 {
 	if(cpol)
@@ -293,25 +293,25 @@ int main(void)
 	  refreshDroite();
 	  HAL_UART_Receive(&huart2, inputByte, 15, 1000);
 
-	  for(int i = 0; i < 8; i++)
-		{
+	for(int i = 0; i < 8; i++)
+	{
+	  if(bitRead(inputByte[0], 7-i)) // LEDs de Gauche
+		  Gauche = bitSet(Gauche, i);
+	  else
+		  Gauche = bitClear(Gauche, i);
 
-		  if(bitRead(inputByte[0], 7-i)) // LEDs de Gauche
-			  Gauche = bitSet(Gauche, i);
-		  else
-			  Gauche = bitClear(Gauche, i);
+	  if(bitRead(inputByte[2], 7-i)) // LEDs de Droite
+		  Droite = bitSet(Droite, i);
+	  else
+		  Droite = bitClear(Droite, i);
 
-		  if(bitRead(inputByte[2], 7-i)) // LEDs de Droite
-			  Droite = bitSet(Droite, i);
-		  else
-			  Droite = bitClear(Droite, i);
-
-		  if(i == 0 || i == 7) continue;
-		  if(bitRead(inputByte[1], 7-i)) // LEDs du Centre
-			  Centre = bitSet(Centre, i);
-		  else
-			  Centre = bitClear(Centre, i);
-		}
+	  if(i == 0 || i == 7) continue;
+	  if(bitRead(inputByte[1], 7-i)) // LEDs du Centre
+		  Centre = bitSet(Centre, i);
+	  else
+		  Centre = bitClear(Centre, i);
+	}
+	  
 		FCU_Transmit_G(5, Gauche);
 		FCU_Transmit_D(5, Droite);
 		FCU_Transmit_C(2, 6, Centre);
